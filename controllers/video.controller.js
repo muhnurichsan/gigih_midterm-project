@@ -23,8 +23,8 @@ module.exports = {
   },
   createNewVideo: async (req, res) => {
     try {
-      const { url_image_thumbnail } = req.body;
-      const video = new Video({ url_image_thumbnail });
+      const { url_image_thumbnail, url_youtube } = req.body;
+      const video = new Video({ url_image_thumbnail, url_youtube });
       await video.save();
       res.status(200).json({
         success: true,

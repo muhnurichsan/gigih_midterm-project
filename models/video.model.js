@@ -5,6 +5,10 @@ const videoSchema = new mongoose.Schema(
       required: true,
       type: String,
     },
+    url_youtube: {
+      required: true,
+      type: String,
+    },
   },
   { versionKey: false, timestamps: true }
 );

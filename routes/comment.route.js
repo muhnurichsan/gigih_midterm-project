@@ -5,7 +5,7 @@ const {
   createNewComment,
 } = require("../controllers/comment.controller");
 
-router.get("/:id", getAllComment);
+router.get("/:videoID", getAllComment);
 router.post("/", createNewComment);
 
 module.exports = router;

@@ -3,9 +3,9 @@ const Comment = require("../models/comment.model");
 module.exports = {
   getAllComment: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { videoID } = req.params;
       const comments = await Comment.find({
-        videoID: id,
+        videoID,
       });
       if (comments.length === 0) {
         throw new Error(
