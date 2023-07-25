@@ -7,6 +7,6 @@ const {
 } = require("../controllers/product.controller");
 
 router.get("/:videoID", getAllProduct);
-router.get("/", searchProduct);
+router.get("/:videoID/search", searchProduct);
 router.post("/", createNewProduct);
 module.exports = router;

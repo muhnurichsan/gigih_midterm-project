@@ -4,6 +4,11 @@ module.exports = {
   getAllComment: async (req, res) => {
     try {
       const { videoID } = req.params;
+      if (!videoID.match(/^[0-9a-fA-F]{24}$/)) {
+        throw new Error(
+          "Tidak dapat menemukan product untuk id yang diberikan"
+        );
+      }
       const comments = await Comment.find({
         videoID,
       });
@@ -37,9 +42,7 @@ module.exports = {
         fail: false,
       });
     } catch (err) {
-      res
-        .status(400)
-        .json({ success: false, fail: true, message: err.message });
+      res.status(400).json({ success: false, fail: true });
     }
   },
 };
