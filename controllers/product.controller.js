@@ -56,11 +56,20 @@ module.exports = {
       const product = await Product.find({
         videoID,
       });
-      const filteredProduct = product.filter((item) => {
-        return item.title.toLowerCase().match(title.toLowerCase());
-      });
+      const mappedSearchProducts = product
+        .filter((item) => {
+          return item.title.toLowerCase().match(title.toLowerCase());
+        })
+        .map((item) => {
+          return {
+            productID: item._id,
+            link: item.link,
+            title: item.title,
+            price: item.price,
+          };
+        });
 
-      res.status(200).json(filteredProduct);
+      res.status(200).json(mappedSearchProducts);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
