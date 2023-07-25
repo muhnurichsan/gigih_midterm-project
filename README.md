@@ -49,7 +49,7 @@
 ```
 **GET /videos**
 ----
-  Returns all videos in the system.
+  Returns all videos.
 * **URL Params**  
   None
 * **Data Params**  
@@ -65,9 +65,11 @@
      {<mapped_video_object>}
 ]
 ```
-**POST /users**
+
+### Submit Video
+**POST /video**
 ----
-  Creates a new video and returns object.
+  Creates a new video and return object.
 * **URL Params**  
   None
 * **Headers**  
@@ -85,8 +87,138 @@
     success: true,
     fail: false
 }` 
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:**  `{
+    success: false,
+    fail: true
+}` 
 
+### Comment List
+* Mapped Comment object
+```
+{
+  username: String,              
+  comment: String,
+  timestamp :{
+    createdAt: Date,
+    updatedAt: Date
+  }
+}
+```
+**GET /comment/:videoID**
+----
+  Returns the specified comments with related videoID.
+* **URL Params**  
+  *Required:* `videoID=[ObjectId]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+  **Content:** 
+  ```
+  [
+     {<mapped_comment_object>},
+     {<mapped_comment_object>}
+  ]
+  ```
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:** `{ error : "Tidak dapat menemukan comment untuk id yang diberikan" }`
 
+### Submit Comment
+**POST /comment**
+----
+  Creates a new comment and return object.
+* **URL Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Data Params**  
+```
+{
+    username: String,
+    bodyComment: String,
+    videoID: ObjectId
+}
+```
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{
+    success: true,
+    fail: false
+}` 
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:**  `{
+    success: false,
+    fail: true
+}` 
+
+### Product List
+* Mapped Product object
+```
+{
+    productID: ObjectID,
+    link: String,
+    title: String,
+    price: String
+}
+```
+**GET /product/:videoID**
+----
+  Returns the specified products with related videoID.
+* **URL Params**  
+  *Required:* `videoID=[ObjectId]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+  **Content:** 
+  ```
+  [
+     {<mapped_product_object>},
+     {<mapped_product_object>}
+  ]
+  ```
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:** `{ error : "Tidak dapat menemukan product untuk id yang diberikan" }`
+
+### Submit Product
+**POST /product**
+----
+  Creates a new product and return object.
+* **URL Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Data Params**  
+```
+{
+    link: String,
+    title: String,
+    price: String,
+    videoID: ObjectId
+}
+```
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{
+    success: true,
+    fail: false
+}` 
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:**  `{
+    success: false,
+    fail: true
+}` 
+    
 ## How to Run
 
 1. First you need to clone this repo into your local machine
