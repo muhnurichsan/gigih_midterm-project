@@ -39,7 +39,7 @@
 
 
 ## List API Request and Response
-###Video Thumbnail List
+### Video Thumbnail List
 * Mapped Video object
 ```
 {
