@@ -1,4 +1,4 @@
-# gigih_midterm-project
+# GIGIH 3.0 Midterm Project
 
 ## Database Structure
   ### Database Name : db_tokplay_clone
@@ -172,6 +172,39 @@
   Returns the specified products with related videoID.
 * **URL Params**  
   *Required:* `videoID=[ObjectId]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+  **Content:** 
+  ```
+  [
+     {<mapped_product_object>},
+     {<mapped_product_object>}
+  ]
+  ```
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:** `{ error : "Tidak dapat menemukan product untuk id yang diberikan" }`
+
+### Search Product
+* Mapped Product object
+```
+{
+    productID: ObjectID,
+    link: String,
+    title: String,
+    price: String
+}
+```
+**GET /product/:videoID/search?title=**
+----
+  Returns the searched products with related videoID.
+* **URL Params**  
+  *Required:* `videoID=[ObjectId]`
+  *Required:* `title=[String]`
 * **Data Params**  
   None
 * **Headers**  
