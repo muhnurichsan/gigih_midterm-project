@@ -39,6 +39,52 @@
 
 
 ## List API Request and Response
+###Video Thumbnail List
+* Mapped Video object
+```
+{
+  videoID: ObjectId,              
+  url_image_thumbnail: String,   
+}
+```
+**GET /videos**
+----
+  Returns all videos in the system.
+* **URL Params**  
+  None
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+[
+     {<mapped_video_object>},
+     {<mapped_video_object>}
+]
+```
+**POST /users**
+----
+  Creates a new video and returns object.
+* **URL Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Data Params**  
+```
+  {
+    url_image_thumbnail: String,
+    url_youtube: String
+  }
+```
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{
+    success: true,
+    fail: false
+}` 
 
 
 ## How to Run
