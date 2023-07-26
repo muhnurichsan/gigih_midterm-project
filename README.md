@@ -38,7 +38,7 @@
 
 ## API Structure
 
-### API - Tokopedia Play
+### API - Tokopedia Play Clone
 ----
 ### Endpoints
 
