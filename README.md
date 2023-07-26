@@ -408,3 +408,7 @@ npm install
 ```bash
 npm run start
 ```
+5. In order to create and access all collection, hit (run) all the POST Method API to initialize data. Use this order:
+   - POST /video (first)
+   - POST /comment (second)
+   - POST /product (third)
