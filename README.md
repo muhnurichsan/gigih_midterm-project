@@ -134,9 +134,9 @@ GET /product/{videoID}
         "price": "120000"
     },
     {
-        "productID": "64bfd65b81bae50f36de7127",
+        "productID": "64bfdedde98c9d8c95c1014f",
         "link": "https://youtube.com",
-        "title": "Kemeja Muslim Kalimantan",
+        "title": "Iphone 12",
         "price": "120000"
     },
 ]
