@@ -35,10 +35,6 @@
   updatedAt: Date,      // Timestamp date of the created comment (stored as Date object)
 }
   ```
-## API Structure
-
-### API - Tokopedia Play
-----
 
 ## API Structure
 
