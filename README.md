@@ -1,4 +1,4 @@
-# gigih_midterm-project
+# GIGIH 3.0 Midterm Project
 
 ## Database Structure
   ### Database Name : db_tokplay_clone
@@ -35,8 +35,149 @@
   updatedAt: Date,      // Timestamp date of the created comment (stored as Date object)
 }
   ```
+
 ## API Structure
 
+### API - Tokopedia Play Clone
+----
+### Endpoints
+
+- Video Thumbnail List
+#### Retrieves a list of video.
+
+```bash
+GET /video
+```
+#### Response
+```json
+[
+    {
+        "videoID": "64bce011840cedff473d40a7",
+        "url_image_thumbnail": "https://youtube.com"
+    },
+    {
+        "videoID": "64bfd1852cfb95b52f283c36",
+        "url_image_thumbnail": "https://google.com"
+    },
+]
+```
+
+- Submit Video
+##### Create a new video and return object.
+
+```bash
+POST /video
+```
+#### Response
+```json
+{
+    "success": true,
+    "fail":false
+}
+```
+
+- Comment List
+#### Returns the specified comments with related videoID.
+
+```bash
+GET /comment/{videoID}
+```
+#### Response
+```json
+[
+    {
+        "username": "rio123",
+        "comment": "product ini sangat keren",
+        "timestamp": {
+            "createdtAt": "2023-07-25T14:21:04.558Z",
+            "updatedAt": "2023-07-25T14:21:04.558Z"
+        }
+    },
+    {
+        "username": "rio123",
+        "comment": "product ini sangat banget malahan",
+        "timestamp": {
+            "createdtAt": "2023-07-25T14:21:11.836Z",
+            "updatedAt": "2023-07-25T14:21:11.836Z"
+        }
+    },
+]
+```
+
+- Submit Comment
+#### Creates a new comment and return object.
+
+```bash
+POST /comment
+```
+#### Response
+```json
+{
+    "success": true,
+    "fail":false
+}
+```
+
+- Product List
+#### Returns the specified products with related videoID.
+
+```bash
+GET /product/{videoID}
+```
+#### Response
+```json
+[
+    {
+        "productID": "64bce046840cedff473d40ad",
+        "link": "https://youtube.com",
+        "title": "Kemeja Muslim Batik",
+        "price": "120000"
+    },
+    {
+        "productID": "64bfdedde98c9d8c95c1014f",
+        "link": "https://youtube.com",
+        "title": "Iphone 12",
+        "price": "120000"
+    },
+]
+```
+- Search Product
+#### Returns the searched products with related videoID.
+
+```bash
+GET /product/{videoID}/search?title=kemeja
+```
+#### Response
+```json
+[
+    {
+        "productID": "64bce046840cedff473d40ad",
+        "link": "https://youtube.com",
+        "title": "Kemeja Muslim Batik",
+        "price": "120000"
+    },
+    {
+        "productID": "64bfd65b81bae50f36de7127",
+        "link": "https://youtube.com",
+        "title": "Kemeja Muslim Kalimantan",
+        "price": "120000"
+    },
+]
+```
+
+- Submit Product
+#### Creates a new product and return object.
+
+```bash
+POST /product
+```
+#### Response
+```json
+{
+    "success": true,
+    "fail":false
+}
+```
 
 ## List API Request and Response
 ### Video Thumbnail List
@@ -47,9 +188,9 @@
   url_image_thumbnail: String,   
 }
 ```
-**GET /videos**
+**GET /video**
 ----
-  Returns all videos.
+  Retrieves a list of video.
 * **URL Params**  
   None
 * **Data Params**  
@@ -69,7 +210,7 @@
 ### Submit Video
 **POST /video**
 ----
-  Creates a new video and return object.
+  Create a new video and return object.
 * **URL Params**  
   None
 * **Headers**  
@@ -126,7 +267,7 @@
   ```
 * **Error Response:**  
   * **Code:** 400  
-  **Content:** `{ error : "Tidak dapat menemukan comment untuk id yang diberikan" }`
+  **Content:** `{ message : "Tidak dapat menemukan comment untuk id yang diberikan" }`
 
 ### Submit Comment
 **POST /comment**
@@ -187,7 +328,40 @@
   ```
 * **Error Response:**  
   * **Code:** 400  
-  **Content:** `{ error : "Tidak dapat menemukan product untuk id yang diberikan" }`
+  **Content:** `{ message : "Tidak dapat menemukan product untuk id yang diberikan" }`
+
+### Search Product
+* Mapped Product object
+```
+{
+    productID: ObjectID,
+    link: String,
+    title: String,
+    price: String
+}
+```
+**GET /product/:videoID/search?title=**
+----
+  Returns the searched products with related videoID.
+* **URL Params**  
+  *Required:* `videoID=[ObjectId]`
+  *Required:* `title=[String]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+  **Content:** 
+  ```
+  [
+     {<mapped_product_object>},
+     {<mapped_product_object>}
+  ]
+  ```
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:** `{ message : "Tidak dapat menemukan product untuk id yang diberikan" }`
 
 ### Submit Product
 **POST /product**
@@ -225,7 +399,7 @@
   ```bash
 git clone https://github.com/muhnurichsan/gigih_midterm-project.git
 ```
-2. Use npm package manager [npm](https://www.npmjs.com/) to install project packages.
+2. Use npm as package manager [npm](https://www.npmjs.com/) to install project packages.
 ```bash
 npm install
 ```
@@ -234,3 +408,7 @@ npm install
 ```bash
 npm run start
 ```
+5. In order to create and access all collection, hit (run) all the POST Method API to initialize data. Use this order:
+   - POST /video (first)
+   - POST /comment (second)
+   - POST /product (third)
