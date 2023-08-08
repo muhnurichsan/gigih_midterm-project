@@ -4,6 +4,7 @@ const port = 3000;
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const mongoClient = process.env.DATABASE_URL;
 
 // mongoose initialization
@@ -31,6 +32,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 app.use("/comment", commentRoute);
 app.use("/video", videoRoute);
 app.use("/product", productRoute);
